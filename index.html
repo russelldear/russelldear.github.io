@@ -54,9 +54,11 @@
       } 
     </script>
   </head>
-  <body style='text-align: center; font-family: courier; padding: 10px;'>w
+  <body style='text-align: center; font-family: courier; padding: 10px;'>
     <textarea id='guidContainer' readonly='readonly' class='js-copytextarea'></textarea>
     <img title='Copy' id='copyButton' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/copy.png' />
-    <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/new.png' onclick='location.reload();' />
+    <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/new.png' onclick='getGuid();' />
+    <br>
+    <span><i>Thanks Phil!</i></span>
   </body>
 </html>
