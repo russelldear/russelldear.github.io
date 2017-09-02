@@ -12,6 +12,7 @@
       }
     </style>
     <script>
+      
       var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
       copyTextareaBtn.addEventListener('click', function(event) {
         var copyTextarea = document.querySelector('.js-copytextarea');
@@ -28,13 +29,29 @@
           console.log('Oops, unable to copy');
         } 
       });
+      
       function revertButton(){
         copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/copy.png');
       }
+      
+      function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      
+      function getGuid() {
+        var newGuid = uuidv4();
+        var container = document.getElementById('guidContainer');
+        container.value = newGuid;
+      }
+
+      console.log()
     </script>
   </head>
   <body style='text-align: center; font-family: courier; padding: 10px;'>
-    <textarea readonly='readonly' class='js-copytextarea'></textarea>
+    <textarea id='guidContainer' readonly='readonly' class='js-copytextarea' onload='getGuid'></textarea>
     <img title='Copy' class='js-textareacopybtn' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/copy.png' />
     <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/new.png' onclick='location.reload();' />
   </body>
