@@ -32,6 +32,9 @@
       }
 
       window.onload=function() {
+        
+        getGuid();
+        
         var copyTextareaBtn = document.getElementById('copyButton');
         copyTextareaBtn.addEventListener('click', function(event) {
           var copyTextarea = document.getElementById('guidContainer');
@@ -51,8 +54,8 @@
       } 
     </script>
   </head>
-  <body style='text-align: center; font-family: courier; padding: 10px;'>v
-    <textarea id='guidContainer' readonly='readonly' class='js-copytextarea' onload='getGuid'></textarea>
+  <body style='text-align: center; font-family: courier; padding: 10px;'>w
+    <textarea id='guidContainer' readonly='readonly' class='js-copytextarea'></textarea>
     <img title='Copy' id='copyButton' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/copy.png' />
     <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/new.png' onclick='location.reload();' />
   </body>
