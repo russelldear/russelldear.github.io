@@ -11,6 +11,27 @@
         font-size: 14px;
       }
     </style>
+    <script>
+      var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+      copyTextareaBtn.addEventListener('click', function(event) {
+        var copyTextarea = document.querySelector('.js-copytextarea');
+        copyTextarea.select();
+        try {
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+          console.log('Copying text command was ' + msg);
+          if (successful) {
+            copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/tick.png');
+            setTimeout(revertButton, 3000);
+          }
+        } catch (err) {
+          console.log('Oops, unable to copy');
+        } 
+      });
+      function revertButton(){
+        copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/copy.png');
+      }
+    </script>
   </head>
   <body style='text-align: center; font-family: courier; padding: 10px;'>
     <textarea readonly='readonly' class='js-copytextarea'></textarea>
