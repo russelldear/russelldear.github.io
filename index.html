@@ -15,7 +15,7 @@
       
       function revertButton(){
         var copyTextareaBtn = document.getElementById('copyButton');
-        copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/copy.png');
+        copyTextareaBtn.setAttribute('src', 'copy.png');
       }
       
       function uuidv4() {
@@ -39,7 +39,7 @@
           var msg = successful ? 'successful' : 'unsuccessful';
           console.log('Copying text command was ' + msg);
           if (successful) {
-            copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/tick.png');
+            copyTextareaBtn.setAttribute('src', 'tick.png');
             setTimeout(revertButton, 3000);
           }
         } catch (err) {
