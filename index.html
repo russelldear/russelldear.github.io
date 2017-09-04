@@ -30,34 +30,40 @@
         var container = document.getElementById('guidContainer');
         container.value = newGuid;
       }
+      
+      function copyGuid() {
+        var copyTextarea = document.getElementById('guidContainer');
+        copyTextarea.select();
+        try {
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+          console.log('Copying text command was ' + msg);
+          if (successful) {
+            copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/tick.png');
+            setTimeout(revertButton, 3000);
+          }
+        } catch (err) {
+          console.log('Oops, unable to copy');
+        }
+      }
 
       window.onload=function() {
         
         getGuid();
         
+        copyGuid();
+        
         var copyTextareaBtn = document.getElementById('copyButton');
         copyTextareaBtn.addEventListener('click', function(event) {
-          var copyTextarea = document.getElementById('guidContainer');
-          copyTextarea.select();
-          try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
-            if (successful) {
-              copyTextareaBtn.setAttribute('src', 'https://s3-us-west-2.amazonaws.com/nooid/tick.png');
-              setTimeout(revertButton, 3000);
-            }
-          } catch (err) {
-            console.log('Oops, unable to copy');
-          } 
+           copyGuid();
         });
       } 
     </script>
   </head>
   <body style='text-align: center; font-family: courier; padding: 10px;'>
     <textarea id='guidContainer' readonly='readonly' class='js-copytextarea'></textarea>
-    <img title='Copy' id='copyButton' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/copy.png' />
-    <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='https://s3-us-west-2.amazonaws.com/nooid/new.png' onclick='getGuid();' />
+    <img title='Copy' id='copyButton' style='vertical-align: top; margin-left: 5px;' src='copy.png' />
+    <img title='Refresh' style='vertical-align: top; margin-left: 5px;' src='refresh.png' onclick='getGuid();' />
     <br>
     <span><sup><i>Thanks Phil!</i></sup></span>
   </body>
