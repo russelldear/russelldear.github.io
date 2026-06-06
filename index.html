@@ -124,6 +124,8 @@
       }
     </style>
     <script>
+      var COPY_FEEDBACK_DURATION = 2000;
+      var REFRESH_FEEDBACK_DURATION = 500;
       var revertTimer;
 
       function uuidv4() {
@@ -149,12 +151,13 @@
         var refreshButton = document.getElementById("refreshButton");
         container.value = uuidv4();
         refreshButton.textContent = "⟳ Refresh";
+        // Force reflow so the spin animation restarts on each click.
         void refreshButton.offsetWidth;
         refreshButton.textContent = "↻ Refresh";
         refreshButton.classList.add("spin");
         setTimeout(function () {
           refreshButton.classList.remove("spin");
-        }, 500);
+        }, REFRESH_FEEDBACK_DURATION);
         setStatus("Generated a new GUID.");
       }
 
@@ -186,7 +189,7 @@
           copyButton.classList.add("success");
           copyButton.textContent = "✓ Copied";
           clearTimeout(revertTimer);
-          revertTimer = setTimeout(revertCopyButton, 2000);
+          revertTimer = setTimeout(revertCopyButton, COPY_FEEDBACK_DURATION);
           setStatus("GUID copied to clipboard.");
         } else {
           setStatus("Unable to copy automatically. Select and copy manually.");
@@ -209,7 +212,7 @@
   <body>
     <main>
       <h1>GUID Tool</h1>
-      <input id="guidContainer" readonly aria-label="Generated GUID" />
+      <input id="guidContainer" type="text" readonly aria-label="Generated GUID" />
       <div class="actions">
         <button id="copyButton" type="button">📋 Copy</button>
         <button id="refreshButton" type="button">↻ Refresh</button>
