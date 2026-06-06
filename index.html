@@ -155,7 +155,7 @@
         container.value = uuidv4();
         // Trigger reflow by reading offsetWidth to restart CSS animation on consecutive clicks.
         refreshButton.classList.remove("spin");
-        refreshButton.offsetWidth; // Force reflow before adding the class again.
+        void refreshButton.offsetWidth; // Force reflow before adding the class again.
         refreshButton.classList.add("spin");
         setTimeout(function () {
           refreshButton.classList.remove("spin");
@@ -214,7 +214,7 @@
   <body>
     <main>
       <h1>GUID Tool</h1>
-      <input id="guidContainer" type="text" readonly aria-readonly="true" aria-label="Generated GUID" />
+      <input id="guidContainer" type="text" readonly aria-label="Generated GUID" />
       <div class="actions">
         <button id="copyButton" type="button">📋 Copy</button>
         <button id="refreshButton" type="button">↻ Refresh</button>
