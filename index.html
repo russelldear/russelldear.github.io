@@ -15,6 +15,7 @@
         --primary: #2563eb;
         --primary-hover: #1d4ed8;
         --success: #16a34a;
+        --button-text: #ffffff;
       }
 
       @media (prefers-color-scheme: light) {
@@ -27,6 +28,7 @@
           --primary: #1d4ed8;
           --primary-hover: #1e40af;
           --success: #15803d;
+          --button-text: #ffffff;
         }
       }
 
@@ -84,7 +86,7 @@
         padding: 0.7rem 0.9rem;
         font: inherit;
         font-weight: 600;
-        color: #fff;
+        color: var(--button-text);
         background: var(--primary);
         cursor: pointer;
         transition: background 0.2s ease, transform 0.08s ease;
@@ -131,6 +133,7 @@
       function uuidv4() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
           var r = (Math.random() * 16) | 0;
+          // RFC 4122 variant bits: keep top bits as 10xx for "y".
           var v = c === "x" ? r : (r & 0x3) | 0x8;
           return v.toString(16);
         });
@@ -152,7 +155,7 @@
         container.value = uuidv4();
         // Trigger reflow by reading offsetWidth to restart CSS animation on consecutive clicks.
         refreshButton.classList.remove("spin");
-        refreshButton.offsetWidth;
+        refreshButton.offsetWidth; // Force reflow before adding the class again.
         refreshButton.classList.add("spin");
         setTimeout(function () {
           refreshButton.classList.remove("spin");
