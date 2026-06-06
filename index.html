@@ -124,13 +124,13 @@
       }
     </style>
     <script>
-      var COPY_FEEDBACK_DURATION = 2000;
-      var REFRESH_FEEDBACK_DURATION = 500;
-      var revertTimer;
+      const COPY_FEEDBACK_DURATION = 2000;
+      const REFRESH_FEEDBACK_DURATION = 500;
+      let copyRevertTimer;
 
       function uuidv4() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-          var r = (Math.random() * 16) | 0;
+          var r = Math.floor(Math.random() * 16);
           var v = c === "x" ? r : (r & 0x3) | 0x8;
           return v.toString(16);
         });
@@ -151,7 +151,7 @@
         var refreshButton = document.getElementById("refreshButton");
         container.value = uuidv4();
         refreshButton.textContent = "⟳ Refresh";
-        // Force reflow so the spin animation restarts on each click.
+        // Trigger reflow by reading offsetWidth to restart CSS animation on consecutive clicks.
         void refreshButton.offsetWidth;
         refreshButton.textContent = "↻ Refresh";
         refreshButton.classList.add("spin");
@@ -188,8 +188,8 @@
         if (successful) {
           copyButton.classList.add("success");
           copyButton.textContent = "✓ Copied";
-          clearTimeout(revertTimer);
-          revertTimer = setTimeout(revertCopyButton, COPY_FEEDBACK_DURATION);
+          clearTimeout(copyRevertTimer);
+          copyRevertTimer = setTimeout(revertCopyButton, COPY_FEEDBACK_DURATION);
           setStatus("GUID copied to clipboard.");
         } else {
           setStatus("Unable to copy automatically. Select and copy manually.");
